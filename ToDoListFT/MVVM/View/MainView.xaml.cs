@@ -15,4 +15,9 @@ public partial class MainView : ContentPage
     {
         mainViewModel.DoneCounter();
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

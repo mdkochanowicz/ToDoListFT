@@ -8,7 +8,7 @@ namespace ToDoListFT
         {
             InitializeComponent();
 
-            MainPage = new NewTaskView();
+            MainPage = new NavigationPage(new MainView());
         }
     }
 }
