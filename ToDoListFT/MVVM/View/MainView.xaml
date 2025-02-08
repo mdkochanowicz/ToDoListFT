@@ -9,11 +9,11 @@
         <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
             <HorizontalStackLayout Grid.Row="0">
                 <Label Text="DONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
-                <Label Text="{Binding DoneCount}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                <Label Text="{Binding DoneCount}" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
             </HorizontalStackLayout>
             <HorizontalStackLayout Grid.Row="1">
                 <Label Text="UNDONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
-                <Label Text="{Binding UndoneCount}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+                <Label Text="{Binding UndoneCount}" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
             </HorizontalStackLayout>
         </Grid>
         <Grid Grid.Row="2" RowDefinitions=".2*, .8*">
@@ -27,6 +27,7 @@
                                     <CheckBox 
                                      x:Name="checkBox"  
                                      IsChecked="{Binding IsCompleted}"
+                                     CheckedChanged="checkBox_CheckedChanged"
                                      VerticalOptions="Center"
                                      Color="DarkBlue"/>
                                     <Label Text="{Binding Title}" VerticalOptions="Center">

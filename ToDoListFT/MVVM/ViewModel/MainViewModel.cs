@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PropertyChanged;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using ToDoListFT.MVVM.Model;
 
 namespace ToDoListFT.MVVM.ViewModel
 {
+    [AddINotifyPropertyChangedInterface]
     public class MainViewModel
     {
         public ObservableCollection<MyTask> Tasks { get; set; }

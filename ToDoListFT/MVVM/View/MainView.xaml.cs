@@ -4,9 +4,15 @@ namespace ToDoListFT.MVVM.View;
 
 public partial class MainView : ContentPage
 {
-	public MainView()
+	private MainViewModel mainViewModel = new MainViewModel();
+    public MainView()
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = mainViewModel;
+    }
+
+    private void checkBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        mainViewModel.DoneCounter();
     }
 }
