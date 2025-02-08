@@ -4,9 +4,25 @@
              x:Class="ToDoListFT.MVVM.View.MainView"
              Title="MainView">
 
-    <Grid Margin="10" RowDefinitions=".1*, .7*, .1*">
+    <Grid Margin="20" RowDefinitions=".1*, .7*, .1*">
         <Label Text="To Do List" FontSize="Large" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" />
-        <Grid Grid.Row="1"/>
+        <Grid Grid.Row="1" RowDefinitions=".2*, .8*">
+            <Label Text="PENDING TASKS" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Start" />
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Tasks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Transparent">
+                            <HorizontalStackLayout>
+                                <CheckBox IsChecked="{Binding IsCompleted}"
+                                          VerticalOptions="Center"
+                                          Color="DarkBlue"/>
+                                <Label Text="{Binding Title}" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
         <Grid Grid.Row="2"/>
     </Grid>
 </ContentPage>
