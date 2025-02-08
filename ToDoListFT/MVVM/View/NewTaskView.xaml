@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoListFT.MVVM.View.NewTaskView"
+             Title="Add Task">
+
+    <Grid RowDefinitions=".2*, .7*, .1*">
+        <Entry Placeholder="Task Title"
+               Style="{StaticResource Task}"
+                Text="{Binding Task}"
+               HorizontalTextAlignment="Center"
+               PlaceholderColor="CadetBlue"
+               VerticalOptions="Center"/>
+    </Grid>
+
+</ContentPage>
