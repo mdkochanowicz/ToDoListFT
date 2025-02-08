@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using ToDoListFT.MVVM.Model;
 
@@ -19,30 +20,8 @@ namespace ToDoListFT.MVVM.ViewModel
 
         public MainViewModel()
         {
-            FillData();
-        }
-
-        private void FillData()
-        {
-            Tasks = new ObservableCollection<MyTask>
-            {
-                new MyTask
-                {   Title = "Task 1",
-                    Description = "Description 1",
-                    IsCompleted = false
-                },
-                new MyTask
-                {   Title = "Task 2",
-                    Description = "Description 2",
-                    IsCompleted = false
-                },
-                new MyTask
-                {   Title = "Task 3",
-                    Description = "Description 3",
-                    IsCompleted = false
-                }
-            };
-
+            Tasks = new ObservableCollection<MyTask>();
+            LoadData();
             DoneCounter();
         }
 
@@ -51,5 +30,31 @@ namespace ToDoListFT.MVVM.ViewModel
             DoneCount = Tasks.Count(t => t.IsCompleted);
             UndoneCount = Tasks.Count(t => !t.IsCompleted);
         }
+        public void SaveData()
+        {
+            var tasksJson = JsonSerializer.Serialize(Tasks);
+            Preferences.Set("Tasks", tasksJson);
+        }
+
+        public void AddTask(MyTask task)
+        {
+            Tasks.Add(task);
+            DoneCounter();
+            SaveData();
+        }
+
+        public void LoadData()
+        {
+            var tasksJson = Preferences.Get("Tasks", string.Empty);
+            if (!string.IsNullOrEmpty(tasksJson))
+            {
+                var tasks = JsonSerializer.Deserialize<ObservableCollection<MyTask>>(tasksJson);
+                foreach (var task in tasks)
+                {
+                    Tasks.Add(task);
+                }
+            }
+        }
+
     }
 }

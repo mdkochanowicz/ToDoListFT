@@ -26,6 +26,9 @@ public partial class NewTaskView : ContentPage
             Description = vm.Description
         };
         vm.Tasks.Add(task);
+
+        vm.MainViewModel.AddTask(task);
+
         await Navigation.PopAsync();
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using ToDoListFT.MVVM.Model;
 
 namespace ToDoListFT.MVVM.ViewModel
@@ -13,5 +8,6 @@ namespace ToDoListFT.MVVM.ViewModel
         public string Title { get; set; }
         public string Description { get; set; }
         public ObservableCollection<MyTask> Tasks { get; set; }
+        public MainViewModel MainViewModel { get; set; }
     }
 }
