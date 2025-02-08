@@ -23,25 +23,36 @@
                     <DataTemplate>
                         <Frame BorderColor="Transparent">
                             <VerticalStackLayout>
-                                <HorizontalStackLayout>
-                                    <CheckBox 
-                                     x:Name="checkBox"  
-                                     IsChecked="{Binding IsCompleted}"
-                                     CheckedChanged="checkBox_CheckedChanged"
-                                     VerticalOptions="Center"
-                                     Color="DarkBlue"/>
-                                    <Label Text="{Binding Title}" VerticalOptions="Center">
-                                        <Label.Triggers>
-                                            <DataTrigger
-                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
-                                            TargetType="Label"
-                                            Value="True">
-                                                <Setter Property="TextDecorations"
-                                                    Value="Strikethrough"/>
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                </HorizontalStackLayout>
+                                <Grid ColumnDefinitions="*, Auto">
+                                    <HorizontalStackLayout Grid.Column="0">
+                                        <CheckBox 
+                                         x:Name="checkBox"  
+                                         IsChecked="{Binding IsCompleted}"
+                                         CheckedChanged="checkBox_CheckedChanged"
+                                         VerticalOptions="Center"
+                                         Color="DarkBlue"/>
+                                        <Label Text="{Binding Title}" VerticalOptions="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger
+                                                Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                                TargetType="Label"
+                                                Value="True">
+                                                    <Setter Property="TextDecorations"
+                                                        Value="Strikethrough"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </HorizontalStackLayout>
+                                    <Button Grid.Column="1"
+                                            Text="DELETE"
+                                            Clicked="DeleteTaskClicked"
+                                            CommandParameter="{Binding .}"
+                                            FontSize="9"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            WidthRequest="60"
+                                            HeightRequest="30" />
+                                </Grid>
                                 <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Center"/>
                             </VerticalStackLayout>
                         </Frame>
@@ -58,3 +69,5 @@
                 HorizontalOptions="End"/>
     </Grid>
 </ContentPage>
+
+

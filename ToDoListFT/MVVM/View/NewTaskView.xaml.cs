@@ -25,7 +25,6 @@ public partial class NewTaskView : ContentPage
             Title = vm.Title,
             Description = vm.Description
         };
-        vm.Tasks.Add(task);
 
         vm.MainViewModel.AddTask(task);
 

@@ -1,12 +1,8 @@
 ﻿using PropertyChanged;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using ToDoListFT.MVVM.Model;
+using Microsoft.Maui.Storage;
 
 namespace ToDoListFT.MVVM.ViewModel
 {
@@ -25,22 +21,23 @@ namespace ToDoListFT.MVVM.ViewModel
             DoneCounter();
         }
 
-        public void DoneCounter()
-        {
-            DoneCount = Tasks.Count(t => t.IsCompleted);
-            UndoneCount = Tasks.Count(t => !t.IsCompleted);
-        }
-        public void SaveData()
-        {
-            var tasksJson = JsonSerializer.Serialize(Tasks);
-            Preferences.Set("Tasks", tasksJson);
-        }
-
         public void AddTask(MyTask task)
         {
             Tasks.Add(task);
             DoneCounter();
             SaveData();
+        }
+
+        public void DoneCounter()
+        {
+            DoneCount = Tasks.Count(t => t.IsCompleted);
+            UndoneCount = Tasks.Count(t => !t.IsCompleted);
+        }
+
+        public void SaveData()
+        {
+            var tasksJson = JsonSerializer.Serialize(Tasks);
+            Preferences.Set("Tasks", tasksJson);
         }
 
         public void LoadData()
@@ -49,6 +46,7 @@ namespace ToDoListFT.MVVM.ViewModel
             if (!string.IsNullOrEmpty(tasksJson))
             {
                 var tasks = JsonSerializer.Deserialize<ObservableCollection<MyTask>>(tasksJson);
+                Tasks.Clear();
                 foreach (var task in tasks)
                 {
                     Tasks.Add(task);
@@ -56,5 +54,12 @@ namespace ToDoListFT.MVVM.ViewModel
             }
         }
 
+        public void DeleteTask(MyTask task)
+        {
+            Tasks.Remove(task);
+            DoneCounter();
+            SaveData();
+        }
     }
 }
+

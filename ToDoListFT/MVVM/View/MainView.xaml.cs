@@ -1,3 +1,4 @@
+using ToDoListFT.MVVM.Model;
 using ToDoListFT.MVVM.ViewModel;
 
 namespace ToDoListFT.MVVM.View;
@@ -32,4 +33,12 @@ public partial class MainView : ContentPage
 
         Navigation.PushAsync(taskView);
     }
+
+    private void DeleteTaskClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var task = button.CommandParameter as MyTask;
+        mainViewModel.DeleteTask(task);
+    }
 }
+
