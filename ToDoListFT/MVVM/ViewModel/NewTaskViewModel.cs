@@ -10,7 +10,8 @@ namespace ToDoListFT.MVVM.ViewModel
 {
     public class NewTaskViewModel
     {
-        public string Task { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public ObservableCollection<MyTask> Tasks { get; set; }
     }
 }

@@ -7,14 +7,14 @@
     <Grid RowDefinitions=".2*, .2*, .5*, .1*">
         <Entry Placeholder="Task Title"
                Style="{StaticResource Task}"
-               Text="{Binding TaskTitle}"
+               Text="{Binding Title}"
                HorizontalTextAlignment="Center"
                PlaceholderColor="CadetBlue"
                VerticalOptions="Center"
                Grid.Row="0"/>
         <Entry Placeholder="Task Description"
                Style="{StaticResource Task}"
-               Text="{Binding TaskDescription}"
+               Text="{Binding Description}"
                HorizontalTextAlignment="Center"
                PlaceholderColor="CadetBlue"
                VerticalOptions="Center"
@@ -27,6 +27,7 @@
             VerticalOptions="Center">
             <Button
                 Text="Add task"
+                Clicked="AddTaskClicked"
                 BackgroundColor="LightGray"
                 TextColor="Black"/>
         </HorizontalStackLayout>
