@@ -4,25 +4,49 @@
              x:Class="ToDoListFT.MVVM.View.MainView"
              Title="MainView">
 
-    <Grid Margin="20" RowDefinitions=".1*, .7*, .1*">
+    <Grid Margin="20" RowDefinitions=".1*, .1*, .7*">
         <Label Text="To Do List" FontSize="Large" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" />
-        <Grid Grid.Row="1" RowDefinitions=".2*, .8*">
+        <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
+            <HorizontalStackLayout Grid.Row="0">
+                <Label Text="DONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
+                <Label Text="{Binding DoneCount}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Row="1">
+                <Label Text="UNDONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
+                <Label Text="{Binding UndoneCount}" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
+            </HorizontalStackLayout>
+        </Grid>
+        <Grid Grid.Row="2" RowDefinitions=".2*, .8*">
             <Label Text="PENDING TASKS" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Start" />
             <CollectionView Grid.Row="1" ItemsSource="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Transparent">
-                            <HorizontalStackLayout>
-                                <CheckBox IsChecked="{Binding IsCompleted}"
-                                          VerticalOptions="Center"
-                                          Color="DarkBlue"/>
-                                <Label Text="{Binding Title}" VerticalOptions="Center"/>
-                            </HorizontalStackLayout>
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox 
+                                     x:Name="checkBox"  
+                                     IsChecked="{Binding IsCompleted}"
+                                     VerticalOptions="Center"
+                                     Color="DarkBlue"/>
+                                    <Label Text="{Binding Title}" VerticalOptions="Center">
+                                        <Label.Triggers>
+                                            <DataTrigger
+                                            Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                            TargetType="Label"
+                                            Value="True">
+                                                <Setter Property="TextDecorations"
+                                                    Value="Strikethrough"/>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Center"/>
+                            </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-        <Grid Grid.Row="2"/>
     </Grid>
 </ContentPage>
