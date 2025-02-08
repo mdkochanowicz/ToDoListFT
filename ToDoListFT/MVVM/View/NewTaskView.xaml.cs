@@ -5,21 +5,27 @@ namespace ToDoListFT.MVVM.View;
 
 public partial class NewTaskView : ContentPage
 {
-	public NewTaskView()
-	{
-		InitializeComponent();
-	}
-
-    private void AddTaskClicked(object sender, EventArgs e)
+    public NewTaskView()
     {
-		var vm = BindingContext as NewTaskViewModel;
+        InitializeComponent();
+    }
 
-		var task = new MyTask
-		{
+    private async void AddTaskClicked(object sender, EventArgs e)
+    {
+        var vm = BindingContext as NewTaskViewModel;
+
+        if (string.IsNullOrWhiteSpace(vm.Title))
+        {
+            await DisplayAlert("Validation Error", "Task title is required.", "OK");
+            return;
+        }
+
+        var task = new MyTask
+        {
             Title = vm.Title,
             Description = vm.Description
         };
-		vm.Tasks.Add(task);
-        Navigation.PopAsync();
+        vm.Tasks.Add(task);
+        await Navigation.PopAsync();
     }
 }
