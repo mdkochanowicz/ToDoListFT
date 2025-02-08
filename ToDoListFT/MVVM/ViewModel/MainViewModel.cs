@@ -11,7 +11,10 @@ namespace ToDoListFT.MVVM.ViewModel
     public class MainViewModel
     {
         public ObservableCollection<MyTask> Tasks { get; set; }
-        
+
+        public int DoneCount { get; private set; }
+        public int UndoneCount { get; private set; }
+
         public MainViewModel()
         {
             FillData();
@@ -37,7 +40,14 @@ namespace ToDoListFT.MVVM.ViewModel
                     IsCompleted = false
                 }
             };
+
+            DoneCounter();
         }
 
+        public void DoneCounter()
+        {
+            DoneCount = Tasks.Count(t => t.IsCompleted);
+            UndoneCount = Tasks.Count(t => !t.IsCompleted);
+        }
     }
 }
