@@ -2,36 +2,53 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoListFT.MVVM.View.NewTaskView"
-             Title="Add Task">
+             Title="Add Task"
+             BackgroundColor="#FFFFFF">
 
-    <Grid RowDefinitions=".2*, .2*, .5*, .1*">
-        <Entry Placeholder="Task Title"
-               Style="{StaticResource Task}"
-               Text="{Binding Title}"
-               HorizontalTextAlignment="Center"
-               PlaceholderColor="CadetBlue"
-               VerticalOptions="Center"
-               Grid.Row="0"/>
-        <Entry Placeholder="Task Description"
-               Style="{StaticResource Task}"
-               Text="{Binding Description}"
-               HorizontalTextAlignment="Center"
-               PlaceholderColor="CadetBlue"
-               VerticalOptions="Center"
-               Grid.Row="1"/>
-        <HorizontalStackLayout
-            Grid.Row="3"
-            Margin="10"
-            HorizontalOptions="CenterAndExpand"
-            Spacing="15"
-            VerticalOptions="Center">
-            <Button
-                Text="Add task"
+    <Grid Margin="20" RowDefinitions="Auto, Auto, *">
+        <Label Text="ADD NEW TASK" TextColor="#4A4A4A" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,40,0,10"/>
+        <Grid Grid.Row="1" RowDefinitions="Auto, Auto, *" ColumnDefinitions="*">
+            <Frame BorderColor="#D8D8D8" BackgroundColor="#D8D8D8" CornerRadius="10" Padding="10" Margin="5" VerticalOptions="Center">
+                <Entry Placeholder="Task Title"
+                       Text="{Binding Title}"
+                       HorizontalTextAlignment="Center"
+                       PlaceholderColor="#4A4A4A"
+                       TextColor="#4A4A4A"
+                       VerticalOptions="Center"/>
+            </Frame>
+            <Frame BorderColor="#D8D8D8" BackgroundColor="#D8D8D8" CornerRadius="10" Padding="10" Margin="5" VerticalOptions="Center" Grid.Row="1">
+                <Entry Placeholder="Task Description"
+                       Text="{Binding Description}"
+                       HorizontalTextAlignment="Center"
+                       PlaceholderColor="#4A4A4A"
+                       TextColor="#4A4A4A"
+                       VerticalOptions="Center"/>
+            </Frame>
+        </Grid>
+        <Button Grid.Row="2"
+                Text="Add Task"
                 Clicked="AddTaskClicked"
-                BackgroundColor="LightGray"
-                TextColor="Black"/>
-        </HorizontalStackLayout>
+                BackgroundColor="#4A90E2"
+                TextColor="White"
+                HeightRequest="60"
+                WidthRequest="200"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20">
+            <Button.Shadow>
+                <Shadow Brush="Black" Opacity="0.3" Offset="5,5" />
+            </Button.Shadow>
+        </Button>
     </Grid>
 
 </ContentPage>
+
+
+
+
+
+
+
+
+
 

@@ -2,26 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoListFT.MVVM.View.MainView"
-             Title="To-Do List">
+             BackgroundColor="#FFFFFF">
 
-    <Grid Margin="20" RowDefinitions=".1*, .1*, .7*">
-        <Label Text="To Do List" FontSize="Large" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" />
-        <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
-            <HorizontalStackLayout Grid.Row="0">
-                <Label Text="DONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
-                <Label Text="{Binding DoneCount}" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Grid.Row="1">
-                <Label Text="UNDONE:" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" />
-                <Label Text="{Binding UndoneCount}" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
-            </HorizontalStackLayout>
+    <Grid Margin="20" RowDefinitions="Auto, Auto, *">
+        <Label Text="TO DO LIST" StyleClass="ThirdColor, LabelStyle" TextColor="#4A4A4A" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20,0,10"/>
+        <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto" ColumnSpacing="20" HorizontalOptions="Center" Margin="0,0,0,20">
+            <Frame Grid.Column="0" BorderColor="#D8D8D8" BackgroundColor="#D8D8D8" CornerRadius="10" Padding="10" Margin="5" WidthRequest="120" HeightRequest="50" VerticalOptions="Center">
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="DONE:" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#4A4A4A"/>
+                    <Label Text="{Binding DoneCount}" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,0,0" TextColor="#4A4A4A"/>
+                </HorizontalStackLayout>
+            </Frame>
+            <Frame Grid.Column="1" BorderColor="#D8D8D8" BackgroundColor="#D8D8D8" CornerRadius="10" Padding="10" Margin="5" WidthRequest="120" HeightRequest="50" VerticalOptions="Center">
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="UNDONE:" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" TextColor="#4A4A4A"/>
+                    <Label Text="{Binding UndoneCount}" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" Margin="5,0,0,0" TextColor="#4A4A4A"/>
+                </HorizontalStackLayout>
+            </Frame>
         </Grid>
-        <Grid Grid.Row="2" RowDefinitions=".04*, .9*">
-            <Label Text="PENDING TASKS" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Start" />
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Tasks}">
+        <Grid Grid.Row="2" RowDefinitions="Auto, *">
+            <Label Text="PENDING TASKS" FontSize="Medium" HorizontalOptions="Start" VerticalOptions="Start" TextColor="#4A4A4A" Margin="0,0,0,10"/>
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Tasks}" Margin="0,0,0,20">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="Transparent">
+                        <Frame BorderColor="#D8D8D8" BackgroundColor="#50E3C2" CornerRadius="10" Padding="10" Margin="5" HeightRequest="80">
                             <VerticalStackLayout>
                                 <Grid ColumnDefinitions="Auto, *">
                                     <HorizontalStackLayout Grid.Column="0">
@@ -31,8 +35,8 @@
                                          CheckedChanged="checkBox_CheckedChanged"
                                          VerticalOptions="Center"
                                          HorizontalOptions="Start"
-                                         Color="DarkBlue"/>
-                                        <Label Text="{Binding Title}" VerticalOptions="Center" Margin="10,0,0,0">
+                                         Color="#4A90E2"/>
+                                        <Label Text="{Binding Title}" VerticalOptions="Center" Margin="5,0,0,0" FontSize="16" TextColor="#4A4A4A">
                                             <Label.Triggers>
                                                 <DataTrigger
                                                 Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
@@ -52,9 +56,21 @@
                                             HorizontalOptions="End"
                                             VerticalOptions="Center"
                                             WidthRequest="60"
-                                            HeightRequest="30" />
+                                            HeightRequest="30"
+                                            BackgroundColor="#4A90E2"
+                                            TextColor="White"/>
                                 </Grid>
-                                <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Center" Margin="10,0,0,0"/>
+                                <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Start" HorizontalOptions="Start" Margin="10,-5,0,0" TextColor="#4A4A4A">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                        Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                        TargetType="Label"
+                                        Value="True">
+                                            <Setter Property="TextDecorations"
+                                                Value="Strikethrough"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
@@ -67,7 +83,23 @@
                 HeightRequest="60"
                 WidthRequest="60"
                 VerticalOptions="End"
-                HorizontalOptions="End"/>
+                HorizontalOptions="End"
+                Margin="0,0,20,20"
+                BackgroundColor="#4A90E2"
+                TextColor="White">
+            <Button.Shadow>
+                <Shadow Brush="Black" Opacity="0.3" Offset="5,5" />
+            </Button.Shadow>
+        </Button>
     </Grid>
 </ContentPage>
+
+
+
+
+
+
+
+
+
 

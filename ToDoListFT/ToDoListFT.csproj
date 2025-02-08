@@ -70,6 +70,9 @@
 	  <MauiXaml Update="MVVM\View\NewTaskView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\AdditionalStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
