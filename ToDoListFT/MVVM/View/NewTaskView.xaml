@@ -4,13 +4,33 @@
              x:Class="ToDoListFT.MVVM.View.NewTaskView"
              Title="Add Task">
 
-    <Grid RowDefinitions=".2*, .7*, .1*">
+    <Grid RowDefinitions=".2*, .2*, .5*, .1*">
         <Entry Placeholder="Task Title"
                Style="{StaticResource Task}"
-                Text="{Binding Task}"
+               Text="{Binding TaskTitle}"
                HorizontalTextAlignment="Center"
                PlaceholderColor="CadetBlue"
-               VerticalOptions="Center"/>
+               VerticalOptions="Center"
+               Grid.Row="0"/>
+        <Entry Placeholder="Task Description"
+               Style="{StaticResource Task}"
+               Text="{Binding TaskDescription}"
+               HorizontalTextAlignment="Center"
+               PlaceholderColor="CadetBlue"
+               VerticalOptions="Center"
+               Grid.Row="1"/>
+        <HorizontalStackLayout
+            Grid.Row="3"
+            Margin="10"
+            HorizontalOptions="CenterAndExpand"
+            Spacing="15"
+            VerticalOptions="Center">
+            <Button
+                Text="Add task"
+                BackgroundColor="LightGray"
+                TextColor="Black"/>
+        </HorizontalStackLayout>
     </Grid>
 
 </ContentPage>
+
