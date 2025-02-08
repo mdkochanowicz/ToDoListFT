@@ -16,22 +16,23 @@
                 <Label Text="{Binding UndoneCount}" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" />
             </HorizontalStackLayout>
         </Grid>
-        <Grid Grid.Row="2" RowDefinitions=".2*, .8*">
+        <Grid Grid.Row="2" RowDefinitions=".04*, .9*">
             <Label Text="PENDING TASKS" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Start" />
             <CollectionView Grid.Row="1" ItemsSource="{Binding Tasks}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="Transparent">
                             <VerticalStackLayout>
-                                <Grid ColumnDefinitions="*, Auto">
+                                <Grid ColumnDefinitions="Auto, *">
                                     <HorizontalStackLayout Grid.Column="0">
                                         <CheckBox 
                                          x:Name="checkBox"  
                                          IsChecked="{Binding IsCompleted}"
                                          CheckedChanged="checkBox_CheckedChanged"
                                          VerticalOptions="Center"
+                                         HorizontalOptions="Start"
                                          Color="DarkBlue"/>
-                                        <Label Text="{Binding Title}" VerticalOptions="Center">
+                                        <Label Text="{Binding Title}" VerticalOptions="Center" Margin="10,0,0,0">
                                             <Label.Triggers>
                                                 <DataTrigger
                                                 Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
@@ -53,7 +54,7 @@
                                             WidthRequest="60"
                                             HeightRequest="30" />
                                 </Grid>
-                                <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Center"/>
+                                <Label Text="{Binding Description}" FontSize="12" VerticalOptions="Center" Margin="10,0,0,0"/>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
@@ -69,5 +70,4 @@
                 HorizontalOptions="End"/>
     </Grid>
 </ContentPage>
-
 
